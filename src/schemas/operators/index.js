@@ -1,4 +1,3 @@
-// Export all operator schemas
 const accessorMissing = require('./accessor/missing.json');
 const accessorMissingSome = require('./accessor/missing_some.json');
 const accessorVariable = require('./accessor/variable.json');
@@ -41,8 +40,7 @@ const numericMin = require('./numeric/min.json');
 const stringCat = require('./string/cat.json');
 const stringSubstr = require('./string/substr.json');
 
-// Export all schemas as a flat array
-const allOperatorSchemas = [
+const operatorSchemas = [
   accessorMissing,
   accessorMissingSome,
   accessorVariable,
@@ -80,4 +78,6 @@ const allOperatorSchemas = [
   stringSubstr,
 ];
 
-module.exports = allOperatorSchemas;
+module.exports = operatorSchemas;
+
+// see https://github.com/axa-ch/json-logic-js/tree/master/schemas/operators
