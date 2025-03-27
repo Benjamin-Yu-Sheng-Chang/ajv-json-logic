@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://jsonlogic.com/schemas/operators/string/substr.json",
+
+  "title": "substr",
+  "description": "Get a portion of a string.\n\nGive a positive start position to return everything beginning at that index (Indexes of course start at zero).\nGive a negative start position to work backwards from the end of the string, then return everything.\nGive a positive length to express how many characters to return.\nGive a negative length to stop that many characters before the end.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["substr"],
+  "properties": {
+    "substr": {
+      "$ref": "http://jsonlogic.com/schemas/common/trinary-args.json"
+    }
+  },
+  "examples": [
+    { "substr": ["jsonlogic", 4] },
+    { "substr": ["jsonlogic", -5] },
+    { "substr": ["jsonlogic", 1, 3] },
+    { "substr": ["jsonlogic", 4, -2] }
+  ]
+}

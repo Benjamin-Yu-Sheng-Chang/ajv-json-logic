@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://jsonlogic.com/schemas/common/all-types.json",
+
+  "title": "All",
+  "description": "Any valid JSON data type.",
+
+  "oneOf": [
+    { "type": ["boolean", "null", "number", "string", "array"] },
+    { "$ref": "http://jsonlogic.com/schemas/common/no-logic-object.json" }
+  ]
+}
