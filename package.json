@@ -1,24 +1,60 @@
 {
   "name": "ajv-json-logic",
   "version": "1.0.0",
+  "description": "JSON Logic integration for Ajv validator",
   "type": "commonjs",
-  "main": "dist/bundle.js",
-  "scripts": {
-    "build": "rollup -c",
-    "test": "mocha test/**/*.js",
-    "format": "prettier --write \"src/**/*.{js,json}\" \"test/**/*.js\""
+  "main": "dist/cjs/main.js",
+  "module": "dist/esm/main.js",
+  "types": "dist/types/main.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/main.js",
+      "require": "./dist/cjs/main.js",
+      "types": "./dist/types/main.d.ts"
+    }
   },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "test": "mocha test/**/*.js",
+    "format": "prettier --write \"src/**/*.{js,ts,json}\" \"test/**/*.js\"",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benjamin-Yu-Sheng-Chang/ajv-json-logic.git"
+  },
+  "keywords": [
+    "ajv",
+    "json-schema",
+    "json-logic",
+    "validation",
+    "validator"
+  ],
+  "author": "Benjamin Chang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Benjamin-Yu-Sheng-Chang/ajv-json-logic/issues"
+  },
+  "homepage": "https://github.com/Benjamin-Yu-Sheng-Chang/ajv-json-logic#readme",
   "dependencies": {
-    "ajv": "^8.12.0",
-    "glob": "^10.4.5",
+    "ajv": "^8.17.1",
     "json-logic-js": "^2.0.5"
   },
   "devDependencies": {
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "chai": "^4.3.7",
-    "mocha": "^10.2.0",
+    "@types/json-logic-js": "^2.0.1",
+    "@types/node": "22.13.14",
+    "chai": "5.2.0",
+    "mocha": "11.2.0",
     "prettier": "^3.2.5",
-    "rollup": "^4.12.0"
+    "rimraf": "6.0.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
   }
 }
