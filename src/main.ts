@@ -3,6 +3,7 @@ import type { Ajv } from 'ajv';
 import allSchemas from './schemas/index';
 import conditionalRequiredDef from './definitions/conditionalRequired';
 import jsonLogicDef from './definitions/jsonLogic';
+import conditionalSchemaDef from './definitions/conditionalSchema';
 
 /**
  * Adds JSON Logic support to Ajv
@@ -18,6 +19,9 @@ function ajvJsonLogic(ajv: Ajv): Ajv {
 
   // Add the conditionalRequired keyword
   ajv.addKeyword(conditionalRequiredDef());
+
+  // Add the conditionalSchema keyword
+  ajv.addKeyword(conditionalSchemaDef());
 
   return ajv;
 }

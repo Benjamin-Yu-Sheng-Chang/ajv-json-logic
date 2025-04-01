@@ -198,4 +198,44 @@ describe('readme examples', () => {
       expect(validate({ age: 16, name: 'Bob' })).to.be.false;
     });
   });
+
+  describe('conditionalSchema', () => {
+    beforeEach(() => {
+      const schema = {
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+          age: { type: 'number' },
+          parentConsent: { type: 'boolean' },
+        },
+        conditionalSchema: [
+          {
+            schema: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                age: { type: 'number' },
+                parentConsent: { type: 'boolean' },
+              },
+              required: ['name', 'age', 'parentConsent'],
+            },
+            rule: { '<': [{ var: 'age' }, 18] },
+          },
+        ],
+      };
+      validate = ajv.compile(schema);
+    });
+
+    it('should return true for valid data', () => {
+      expect(validate({ age: 25, name: 'John' })).to.be.true;
+    });
+
+    it('should return true for valid data', () => {
+      expect(validate({ age: 16, name: 'Amy', parentConsent: true })).to.be.true;
+    });
+
+    it('should return false when required property is missing', () => {
+      expect(validate({ age: 16, name: 'Bob' })).to.be.false;
+    });
+  });
 });

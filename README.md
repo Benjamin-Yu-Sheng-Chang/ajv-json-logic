@@ -115,17 +115,47 @@ const schema = {
 };
 ```
 
+The `conditionalSchema` keyword is used to apply a schema conditionally based on JSON Logic conditions:
+
+```javascript
+const schema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string' },
+    age: { type: 'number' },
+    parentConsent: { type: 'boolean' },
+  },
+  conditionalSchema: [
+    {
+      schema: {
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+          age: { type: 'number' },
+          parentConsent: { type: 'boolean' },
+        },
+        required: ['name', 'age', 'parentConsent'],
+      },
+      rule: { '<': [{ var: 'age' }, 18] },
+    },
+  ],
+};
+
+const validate = ajv.compile(schema);
+
+// Valid data - Adult without parent consent
+console.log(validate({ name: 'John', age: 25 })); // true
+
+// Valid data - Minor with parent consent
+console.log(validate({ name: 'Amy', age: 16, parentConsent: true })); // true
+
+// Invalid data - Minor without parent consent
+console.log(validate({ name: 'Bob', age: 16 })); // false
+```
+
 ## TypeScript Support
 
 This library includes TypeScript definitions and can be used in TypeScript projects:
-
-```typescript
-import Ajv from 'ajv';
-import ajvJsonLogic from 'ajv-json-logic';
-
-const ajv = new Ajv();
-ajvJsonLogic(ajv);
-```
 
 ## License
 

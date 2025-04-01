@@ -1,6 +1,6 @@
 {
   "name": "ajv-json-logic",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JSON Logic integration for Ajv validator",
   "type": "commonjs",
   "main": "dist/cjs/main.js",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@types/json-logic-js": "^2.0.1",
-    "@types/node": "22.13.14",
+    "@types/node": "22.13.17",
     "chai": "5.2.0",
     "mocha": "11.2.0",
     "prettier": "^3.2.5",

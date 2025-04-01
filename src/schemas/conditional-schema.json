@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "conditionalObject": {
+      "type": "object",
+      "properties": {
+        "schema": { "type": "object" },
+        "rule": { "$ref": "http://jsonlogic.com/schemas/json-logic.json" }
+      },
+      "required": ["schema", "rule"],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "type": "array",
+      "items": [{ "$ref": "#/$defs/conditionalObject" }],
+      "uniqueItems": true
+    },
+    { "$ref": "#/$defs/conditionalObject" }
+  ]
+}
