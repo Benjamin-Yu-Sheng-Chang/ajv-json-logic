@@ -1,15 +1,15 @@
 {
   "name": "ajv-json-logic",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "JSON Logic integration for Ajv validator",
   "type": "commonjs",
-  "main": "dist/cjs/main.js",
-  "module": "dist/esm/main.js",
+  "main": "dist/main.cjs",
+  "module": "dist/main.js",
   "types": "dist/types/main.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/main.js",
-      "require": "./dist/cjs/main.js",
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs",
       "types": "./dist/types/main.d.ts"
     }
   },
@@ -19,9 +19,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "rollup -c",
     "test": "mocha test/**/*.js",
     "format": "prettier --write \"src/**/*.{js,ts,json}\" \"test/**/*.js\"",
     "prepublishOnly": "npm run build && npm test"
@@ -48,12 +46,16 @@
     "json-logic-js": "^2.0.5"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/json-logic-js": "^2.0.1",
     "@types/node": "22.13.17",
     "chai": "5.2.0",
     "mocha": "11.2.0",
     "prettier": "^3.2.5",
     "rimraf": "6.0.1",
+    "rollup": "^4.39.0",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"
   }

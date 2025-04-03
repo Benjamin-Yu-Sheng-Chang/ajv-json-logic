@@ -7,40 +7,49 @@ export default [
   {
     input: 'src/main.ts',
     output: {
-      dir: 'dist/cjs',
+      dir: 'dist', // Output to root dist
       format: 'cjs',
       sourcemap: true,
-      preserveModules: true
+      preserveModules: true,
+      entryFileNames: '[name].cjs', // Use .cjs extension
+      exports: 'named',
     },
     plugins: [
       json(),
       resolve(),
       typescript({
         tsconfig: './tsconfig.json',
-        outDir: 'dist/cjs',
-        declaration: true,
-        declarationDir: 'dist/types'
-      })
+        // Remove outDir, let Rollup handle it
+        declaration: true, // Generate declarations in this build
+        declarationDir: 'dist/types', // Place declarations in dist/types
+        sourceMap: true,
+        inlineSources: true,
+      }),
     ],
-    external: ['ajv', 'json-logic-js']
+    external: ['ajv', 'json-logic-js'],
   },
   // ES module build
   {
     input: 'src/main.ts',
     output: {
-      dir: 'dist/esm',
+      dir: 'dist', // Output to root dist
       format: 'es',
       sourcemap: true,
-      preserveModules: true
+      preserveModules: true,
+      entryFileNames: '[name].js', // Use .js extension (default)
+      exports: 'named',
     },
     plugins: [
       json(),
       resolve(),
       typescript({
         tsconfig: './tsconfig.json',
-        outDir: 'dist/esm'
-      })
+        // Remove outDir, let Rollup handle it
+        // Don't generate declarations again
+        sourceMap: true,
+        inlineSources: true,
+      }),
     ],
-    external: ['ajv', 'json-logic-js']
-  }
+    external: ['ajv', 'json-logic-js'],
+  },
 ];

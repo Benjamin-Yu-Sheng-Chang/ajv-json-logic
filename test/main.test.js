@@ -1,7 +1,13 @@
 // Using CommonJS for tests
-const { expect } = require('chai');
+let expect; // Declare expect variable
 const Ajv = require('ajv');
-const ajvJsonLogic = require('../dist/cjs/main.js');
+const ajvJsonLogic = require('../dist/main.cjs');
+
+// Dynamically import chai before tests run
+before(async () => {
+  const chai = await import('chai');
+  expect = chai.expect;
+});
 
 describe('json-logic', () => {
   let ajv;
