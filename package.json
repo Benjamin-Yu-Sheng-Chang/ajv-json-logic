@@ -1,16 +1,16 @@
 {
   "name": "ajv-json-logic",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "JSON Logic integration for Ajv validator",
   "type": "commonjs",
-  "main": "dist/cjs/main.js",
-  "module": "dist/esm/main.js",
-  "types": "dist/types/main.d.ts",
+  "main": "dist/main.cjs",
+  "module": "dist/main.js",
+  "types": "dist/main.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/main.js",
-      "require": "./dist/cjs/main.js",
-      "types": "./dist/types/main.d.ts"
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs",
+      "types": "./dist/main.d.ts"
     }
   },
   "files": [
@@ -19,9 +19,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "rollup -c",
     "test": "mocha test/**/*.js",
     "format": "prettier --write \"src/**/*.{js,ts,json}\" \"test/**/*.js\"",
     "prepublishOnly": "npm run build && npm test"
