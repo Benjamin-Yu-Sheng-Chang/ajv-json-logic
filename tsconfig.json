@@ -7,10 +7,8 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "sourceMap": true
+    "allowSyntheticDefaultImports": true
+    // declaration, declarationDir, and sourceMap removed - handled by rollup config
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test"]

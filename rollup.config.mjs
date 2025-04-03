@@ -19,8 +19,9 @@ export default [
       resolve(),
       typescript({
         tsconfig: './tsconfig.json',
+        // Remove outDir, let Rollup handle it
         declaration: true, // Generate declarations in this build
-        // Remove declarationDir - let plugin place types alongside JS with preserveModules
+        declarationDir: 'dist/types', // Place declarations in dist/types
         sourceMap: true,
         inlineSources: true,
       }),
