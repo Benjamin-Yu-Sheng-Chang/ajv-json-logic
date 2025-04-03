@@ -2,7 +2,7 @@
   "name": "ajv-json-logic",
   "version": "1.1.1",
   "description": "JSON Logic integration for Ajv validator",
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/main.cjs",
   "module": "dist/main.js",
   "types": "dist/types/main.d.ts",
