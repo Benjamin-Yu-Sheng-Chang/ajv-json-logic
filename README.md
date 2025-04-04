@@ -9,6 +9,7 @@ Add [JSON Logic](https://jsonlogic.com/) support to [Ajv](https://ajv.js.org/) (
 
 - Adds a `jsonLogic` keyword to validate data using JSON Logic rules
 - Adds a `conditionalRequired` keyword to make fields conditionally required based on JSON Logic rules
+- Adds a `conditionalSchema` keyword to apply a schema conditionally based on JSON Logic rules
 - Supports both CommonJS and ES modules
 - TypeScript support with type definitions
 
@@ -114,6 +115,8 @@ const schema = {
   },
 };
 ```
+
+### Using the `conditionalSchema` Keyword
 
 The `conditionalSchema` keyword is used to apply a schema conditionally based on JSON Logic conditions:
 
